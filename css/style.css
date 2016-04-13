@@ -70,21 +70,9 @@ text-decoration: underline;
 /* -------------
 Initial Page
 -------------- */
-.green-bg {
-background: #68B890;
-height: 780px;
-border-radius: 2rem;
-border: 1px solid white;
-
-}
-.logo-styles {
-/*  margin: 0 auto;
-  background-image: url('../images/logo-monkey.png');
-  height: 50rem;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  margin: 1rem;
-  background-position: center;*/
+#logo-start {
+     height: 48rem;
+     padding: 10rem 0 17rem 0;
 }
 
 /* -------------
@@ -94,9 +82,5 @@ Screen Sizes Custom styles
   .container {
     width: 98%;
   }  
-/*  .logo-styles {
-    background-position: center;
-    height: 27rem;
-    background-size: contain;
-}*/
+
 
