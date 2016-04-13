@@ -1,0 +1,102 @@
+html {
+    background: #FF9800;
+}
+body {
+    background: #68B890;
+    border-radius: 2rem;
+    color: #FFEB3B;
+    margin: 1rem;
+    text-decoration: none;
+    letter-spacing: .5px;
+}
+header {
+  font-family: 'Lato', sans-serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  letter-spacing: 3px;
+}
+#how:hover, #new:hover {
+  opacity:0.7;
+
+}
+/* -------------
+Modal Box Styles
+-------------- */
+.overlay {
+  width: 100%;
+  height: 100%;
+  color: mintcream;
+  background: #FF9800;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  z-index: 1000;
+} 
+.instruction-box {
+ padding-top: 5rem;
+}
+.instruction-box h3 {
+    padding: 0.4em;
+    font-size: 2.4em;
+    font-weight: 300;
+    opacity: 0.8;
+    background: rgba(0,0,0,0.1);
+    border-radius: 3px 3px 0 0;
+
+}
+.instruction-box .instructions {
+  font-weight: 300;
+  font-size: 1.15em;
+  border: 3px solid rgba(0,0,0,0.1);
+}
+.instruction-box .instructions p {
+  margin: 0;
+  padding: 10px 0;
+  line-height: 2em;
+  text-align: justify;
+}
+.instructions strong {
+text-decoration: underline;
+}
+.instructions span {
+  background-color: #FFC107;
+  opacity: .6;
+  color: green;
+  border-radius: 9%;
+  padding: 1rem;
+  float: right;
+}
+/* -------------
+Initial Page
+-------------- */
+.green-bg {
+background: #68B890;
+height: 780px;
+border-radius: 2rem;
+border: 1px solid white;
+
+}
+.logo-styles {
+/*  margin: 0 auto;
+  background-image: url('../images/logo-monkey.png');
+  height: 50rem;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin: 1rem;
+  background-position: center;*/
+}
+
+/* -------------
+Screen Sizes Custom styles
+-------------- */
+@media (min-width: 1200px) {
+  .container {
+    width: 98%;
+  }  
+/*  .logo-styles {
+    background-position: center;
+    height: 27rem;
+    background-size: contain;
+}*/
+

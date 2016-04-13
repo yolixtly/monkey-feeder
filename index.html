@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- meta Tags: characters / compatibility / responsiveness  -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Monkey Feeder!</title>
+    <!-- Style Sheets: normalize / GOOGLE fonts / Jquery UI / fontawesome / favicon / Bootstrap Files / style.css /-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/x-icon"  href='images/monkey-face.jpg'>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+<!--TOP Navegation -->
+    <header>
+      <div id="header" class="navbar navbar-fixed">
+        <div class="container">
+          <div class="navbar-text pull-left">
+            <span id ="how" class="glyphicon glyphicon-question-sign"></span>
+          </div>
+          <div class="navbar-text pull-right">
+            <span id="new" class="glyphicon glyphicon-repeat"></span>
+          </div>
+        </div>
+      </div>
+    </header>
+<!--Modal Box-->
+    <div class="overlay" id="modal" style="display: none">
+      <div class="container instruction-box">
+        <div class="row">
+          <h3 class="col-xs-12 col-md-6 col-md-offset-3">How to Feed the Monkey?</h3>
+        </div>
+        <div class="row">
+          <div class="col-xs-12  col-md-6 col-md-offset-3 instructions">
+            <p>The Goal is to <strong>help the monkey reach the banana!</strong> Here is how: </p>
+            <ol>
+              <li>You will be asked 10 random questions.</li>
+              <li>For each good answered question, the <strong>monkey advances</strong> towards the banana.</li>
+              <li>For each wrong answered question, the <strong>monkey retreats</strong>.</li>
+            </ol>
+            <p>Ready to feed the Monkey?</p>
+            <span id="gotIt" class="close">Got It!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Initial Page-->
+    <div class="container green-bg">
+      <div class="row logo-styles">
+        <div id="startLogo" class="col-xs-12">
+        </div>
+      </div>
+    </div>
+<!--footer-->
+       <footer>
+      <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container">
+          <div class="navbar-text pull-left">
+            <p>@yolixtly</p>
+          </div>
+          <div class="navbar-text pull-right">
+            <a href="https://twitter.com/Yolixtly"><i class="fa fa-twitter-square fa-2x"></i></a>
+            <a href="https://github.com/yolixtly"><i class="fa fa-github-square fa-2x"></i></a>
+            <a href="https://www.linkedin.com/in/yolixtly-anderson-032b256a"><i class="fa fa-linkedin-square fa-2x"></i></a>
+            <a href="https://www.instagram.com/yolixtly/"><i class="fa fa-instagram fa-2x"></i></a>
+            <a href="https://plus.google.com/+YolixtlyANDERSONMK/posts/p/pub"><i class="fa fa-google-plus-square fa-2x"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- JavaScript: Jquery / Jquery UI / Bootstrap / app.js-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+  </body>
+</html>
