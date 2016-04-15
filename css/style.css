@@ -71,20 +71,26 @@ text-decoration: underline;
 Initial Page
 -------------- */
 .green-bg {
-background: #68B890;
-height: 780px;
-border-radius: 2rem;
-border: 1px solid white;
+    background: #68B890;
+    height: 82%;
+    width: 94%;
+    position: fixed;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*border: 1px solid white;*/
 
 }
-.logo-styles {
-/*  margin: 0 auto;
-  background-image: url('../images/logo-monkey.png');
-  height: 50rem;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  margin: 1rem;
-  background-position: center;*/
+#start-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#logo {
+  height: 25rem;
+
 }
 
 /* -------------
