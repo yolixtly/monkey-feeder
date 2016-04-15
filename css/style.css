@@ -70,11 +70,10 @@ text-decoration: underline;
 /* -------------
 Initial Page
 -------------- */
-<<<<<<< HEAD
 .green-bg {
     background: #68B890;
     height: 82%;
-    width: 94%;
+    width: 99%;
     position: fixed;
     border-radius: 2rem;
     display: flex;
@@ -91,13 +90,6 @@ Initial Page
 
 #logo {
   height: 25rem;
-
-=======
-#logo-start {
-     height: 48rem;
-     padding: 10rem 0 17rem 0;
->>>>>>> f22c9aa7e3cdc74e7739b2aef72180abc9b99329
-}
 
 /* -------------
 Screen Sizes Custom styles
