@@ -1,15 +1,13 @@
-html {
-    background: #FF9800;
-}
 body {
-    background: #68B890;
-    border-radius: 2rem;
-    color: #FFEB3B;
-    margin: 1rem;
-    text-decoration: none;
+    background: #FF9800;
     letter-spacing: .5px;
 }
 header {
+  background: #68B890;
+  border-radius: 2rem;
+  color: #FFEB3B;
+  margin: 1rem;
+  text-decoration: none;
   font-family: 'Lato', sans-serif;
   font-weight: 800;
   font-size: 2.5rem;
@@ -71,31 +69,37 @@ text-decoration: underline;
 Initial Page
 -------------- */
 .green-bg {
-    background: #68B890;
-    height: 82%;
-    width: 99%;
-    position: fixed;
+    margin: auto;
+    width: 95%;
+    height: 98%;
     border-radius: 2rem;
+    padding: 2rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    /*border: 1px solid white;*/
+    flex-direction: column;
+}
+.title-1, .title-2   {
+  text-align: center;
+  font-size: 3rem;
+  font-family: 'Chewy', cursive;
+  color: #00405d;
+}
+
+#start-logo {
 
 }
-#start-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#logo {
-  height: 25rem;
+
+#start-logo > #logo {
+  height: 35rem;
 }
 /* -------------
 Screen Sizes Custom styles
 -------------- */
-@media (min-width: 1200px) {
+@media (min-width: 1000px) {
   .container {
     width: 98%;
   }  
-
+  .green-bg {
+    width: 98%;
+  }}
 
