@@ -16,6 +16,7 @@ $(document).ready(function() {
  8. I want to add awesome effects to it! :) 
 */
 
+
   /*---------------------------------------------------------------------------------
       Question Object (DataBase) - MODEL 
   ---------------------------------------------------------------------------------*/
@@ -25,8 +26,96 @@ $(document).ready(function() {
     this.correctAnswer = correctIndex;
   };
 
+  questionOnDisplay = new Array();
+  questionOnDisplay[0] = new Question(
+      // question
+      "Select the 3 correct ways to say “Hello” in Spanish",
+      //the choices
+      ["Hola!","hasta pronto!", "Hola, ¿qué hay?","Hasta mañana","Buenas tardes"],
+      // the correct answer
+      [0,2,4];
+    );
+    questionOnDisplay[1] = new Question(
+      // question
+      "How do you say “I’m hungover” in spanish?",
+      //the choices
+      ["Estoy crudo!","Estoy bien, gracias!"],
+      // the correct answer
+      [0];
+    );
+    questionOnDisplay[2] = new Question(
+      // question
+      "Select the option that translates to Spanish and in the same order the following list: “1. Blue, 2. Red, 3. Yellow”:",
+      //the choices
+      ["1. Azul, 2.  Rojo, 3. Amarillo", "1. Morado, 2. Blanco, 3. Gris", "1.Verde, 2. Rojo, 3. Rosa", "1. Negro, 2. Amarillo, 3. Verde"],
+      // the correct answer
+      [2];
+    );
+    questionOnDisplay[3] = new Question(
+      // question
+      "Is “mono” a way to say “monkey” in Spanish?",
+      //the choices
+      ["yes", "no"],
+      // the correct answer
+      [0];
+    );     
+    questionOnDisplay[4] = new Question(
+      // question
+      "How do you ask: “where is the toilet?” in spanish?",
+      //the choices
+      ["¿Dónde está la cocina?", "¿Dónde está el teléfono?","¿Dónde está el baño?"],
+      // the correct answer
+      [3];
+    );         
+    questionOnDisplay[5] = new Question(
+      // question
+      "Select the 2 correct ways to say “I love you” in Spanish:",
+      //the choices
+      ["te aprecio", "te amo", "te quiero","me gustas"],
+      // the correct answer
+      [1, 2];
+    );
+     questionOnDisplay[6] = new Question(
+      // question
+      "Is “Lunes” a:",
+      //the choices
+      ["Day of the week", "Mexican Actor", "Moon in spanish"],
+      // the correct answer
+      [0];
+    );  
+     questionOnDisplay[7] = new Question(
+      // question
+      "Dog is to “perro” as cat is to “gato”:",
+      //the choices
+      ["yes", "no"],
+      // the correct answer
+      [0];
+    );   
+     questionOnDisplay[8] = new Question(
+      // question
+      "Select the numerical option that translates: “uno, diez, cinco”:",
+      //the choices
+      ["2, 4, 6","1, 10, 5", "1, 12, 7"],
+      // the correct answer
+      [1];
+    ); 
+     questionOnDisplay[9] = new Question(
+      // question
+      "How do you say “I like programming!” in spanish:",
+      //the choices
+      ["Me gusta programar!", "Me gusta comer!"],
+      // the correct answer
+      [0];
+    );      
 
-  function modalBox(){
+
+   /*---------------------------------------------------------------------------------
+     Event Handlers - VIEW
+  ---------------------------------------------------------------------------------*/
+
+  $("#game-section").hide();
+
+  function modalBoxShow() {
       $("#how").click(function() {
       $("#modal").show();
     });
@@ -36,5 +125,27 @@ $(document).ready(function() {
     });
   };
 
-  modalBox();
+  modalBoxShow();
+
+  function restart() {
+    $("#new").click(function() {
+      $("#game-section").hide();
+      $("#init-page").show();
+    });
+  };
+
+  restart();
+
+  function startGame() {
+    //Render Game Section
+    $("#logo").click(function() {
+      $("#init-page").hide();
+      $("#game-section").show();
+    }); 
+  };
+
+  startGame();
+
+
 });
+

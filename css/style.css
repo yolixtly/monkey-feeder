@@ -92,6 +92,49 @@ Initial Page
 #start-logo > #logo {
   height: 35rem;
 }
+
+/* -------------
+Game Section
+-------------- */
+.game-style, .button-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid;
+  font-family: lato;
+}
+.game-style > #question {
+  padding: 1rem;
+  font-weight: bold;
+  text-align: center;
+
+}
+.game-style   > #choices {
+margin: 0 auto;
+}
+#list-choices {
+  list-style-type: none;
+}
+#list-choices > div {
+  font-size: 2rem;
+  justify-content: space-around;
+  padding: 2rem;
+  text-align: center;
+}
+#button-wrapper > button {
+text-align: center;
+width: 33rem;
+border: none;
+font-size: 2rem;
+background: #68B890;
+}
+#button-wrapper >   button:hover {
+  color: #FFEB3B;
+  transition: all 0.5s ease-in-out;
+}
+
+
 /* -------------
 Screen Sizes Custom styles
 -------------- */
