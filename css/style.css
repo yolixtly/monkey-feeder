@@ -103,6 +103,7 @@ Game Section
   justify-content: center;
   border: 1px solid;
   font-family: lato;
+  margin: 0 auto;
 }
 .game-style > #question {
   padding: 1rem;
