@@ -158,12 +158,12 @@ $(document).ready(function() {
   //Function for Right reStart button 
   function restart() {
     $("#new").click(function() {
+      cleanQuestion();
       currentQuestion = 0;
       $("#game-section").hide();
       $("#init-page").show();
       //Reset the Values of HTML 
-      cleanQuestion();
-    });
+   });
   };
 
   //function to clean HTML
@@ -187,8 +187,9 @@ $(document).ready(function() {
           console.log(choice);
         } else {
           showChoices += '<div><input type="radio" id="answer-'+ index +'" name="answer" value=' + index +'"><label class="answer" for="answer-'+ index +'">' + choice + '</label></div>'; 
-          console.log(choice);          
+          console.log(choice);   
         }
+
       });
       showChoices += "</form>"
     $("#list-choices").append(showChoices); 
@@ -202,6 +203,7 @@ $(document).ready(function() {
           currentQuestion++;
           renderQuestion(currentQuestion);
           renderChoices(currentQuestion);
+          console.log("the current question is:" + currentQuestion);
       } else {
         alert("end of game");
       }
