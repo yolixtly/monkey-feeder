@@ -117,8 +117,8 @@ margin: 0 auto;
 #list-choices {
   list-style-type: none;
 }
-#list-choices > div {
-  font-size: 2rem;
+#list-choices > div, .answer {
+  font-size: 3rem;
   justify-content: space-around;
   padding: 2rem;
   text-align: center;

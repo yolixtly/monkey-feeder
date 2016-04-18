@@ -159,7 +159,7 @@ $(document).ready(function() {
   function renderChoices(currentQuestion) {
     var showChoices = "<form id='answerSelect'>";
       $.each(questionOnDisplay[currentQuestion].choices, function(index, choice) {
-        showChoices += '<div><input type="radio" name="answer" value=' + index +'">' + choice + '</div>'; 
+        showChoices += '<div><input type="radio" id="answer-'+ index +'" name="answer" value=' + index +'"><label class="answer" for="answer-'+ index +'">' + choice + '</label></div>'; 
         console.log(choice);
       });
       showChoices += "</form>"
