@@ -3,11 +3,11 @@ $(document).ready(function() {
   
 
 /*-----What do I need ? 
- 1. An Array of Questions: questions, answers, correct answer(s).
- 2. A function to loop through each question and separetly displays it (next question button); 
+ 1. An Array of Questions: questions, answers, correct answer(s). DONE
+ 2. A function to loop through each question and separetly displays it (next question button); DONE
     - one is the brains (Model) the other is the View (UI)
- 3. A  function to start a New Game from 0 (with a monkey button);
- 4. A  Function to Re-start the game from 0;
+ 3. A  function to start a New Game from 0 (with a monkey button); IN PROGRESS
+ 4. A  Function to Re-start the game from 0; INPROGRESS
  5. A  function to evaluate if the answer is correct or not.
  6. A  function to count the score (add or rest)
       - it adds or rest the count (Model)
@@ -16,7 +16,6 @@ $(document).ready(function() {
  8. I want to add awesome effects to it! :) 
 */
 
-  var currentQuestion = 0;
 
   /*---------------------------------------------------------------------------------
       Question Object (DataBase) - MODEL 
@@ -114,8 +113,36 @@ $(document).ready(function() {
      Event Handlers - VIEW
   ---------------------------------------------------------------------------------*/
 
+  //Loading the App : 
+    
   $("#game-section").hide();
+  $("#logo").click(startGame);
 
+  //Instructions and Restart buttons Always available  
+  modalBoxShow();
+  restart();
+
+ // Global Variables
+  var currentQuestion;
+
+  function startGame() {
+    //Render Game Section
+    $("#init-page").hide();
+    $("#game-section").show();
+
+    //Render question group
+    var currentQuestion = 0;
+    renderQuestion(currentQuestion);
+    renderChoices(currentQuestion);
+
+    //Render next Question
+     nextQuestion(currentQuestion);
+
+  };
+   /*---------------------------------------------------------------------------------
+     FUNCTIONS 
+  ---------------------------------------------------------------------------------*/
+  //Function for left Instructions button 
   function modalBoxShow() {
       $("#how").click(function() {
       $("#modal").show();
@@ -126,44 +153,57 @@ $(document).ready(function() {
     });
   };
 
-  modalBoxShow();
-
+  //Function for Right reStart button 
   function restart() {
     $("#new").click(function() {
+      currentQuestion = 0;
       $("#game-section").hide();
       $("#init-page").show();
+      //Reset the Values of HTML 
+      cleanQuestion();
     });
   };
 
-  restart();
-
-  function startGame() {
-    //Render Game Section
-    $("#logo").click(function() {
-      $("#init-page").hide();
-      $("#game-section").show();
-    }); 
-    //render question group
-    renderQuestion(currentQuestion);
-    renderChoices(currentQuestion)
+  //function to clean HTML
+  function cleanQuestion(){
+      $("#question").html('');
+      $("#list-choices").html('');
+      console.clear();
   };
-
-  startGame();
-
-  // console.log(questionestionOnDisplay.choice);
+  //Function to Show the Question given the Current Question 
   function renderQuestion(currentQuestion) {
     var question = '<h1>' + questionOnDisplay[currentQuestion].question + '</h1>' ;
     $("#question").append(question);
   };
 
+  //Function to Show Choices given the Current Question 
   function renderChoices(currentQuestion) {
     var showChoices = "<form id='answerSelect'>";
       $.each(questionOnDisplay[currentQuestion].choices, function(index, choice) {
-        showChoices += '<div><input type="radio" id="answer-'+ index +'" name="answer" value=' + index +'"><label class="answer" for="answer-'+ index +'">' + choice + '</label></div>'; 
-        console.log(choice);
+        if(questionOnDisplay[currentQuestion].correctAnswer.length !== 1) {
+          showChoices += '<div><input type="checkbox" id="answer-'+ index +'" name="answer" value=' + index +'"><label class="answer" for="answer-'+ index +'">' + choice + '</label></div>'; 
+          console.log(choice);
+        } else {
+          showChoices += '<div><input type="radio" id="answer-'+ index +'" name="answer" value=' + index +'"><label class="answer" for="answer-'+ index +'">' + choice + '</label></div>'; 
+          console.log(choice);          
+        }
       });
       showChoices += "</form>"
     $("#list-choices").append(showChoices); 
+  };
+  
+  //Function to Render next-question 
+  function nextQuestion(currentQuestion){
+    $("#next-question").click(function(){
+      cleanQuestion();
+      if(currentQuestion < questionOnDisplay.length - 1) {
+          currentQuestion++;
+          renderQuestion(currentQuestion);
+          renderChoices(currentQuestion);
+      } else {
+        alert("end of game");
+      }
+    }); 
   };
 });
 
