@@ -123,7 +123,8 @@ $(document).ready(function() {
   restart();
 
  // Global Variables
-  var currentQuestion;
+  var currentQuestion, 
+  userScore;
 
   function startGame() {
     //Render Game Section
@@ -131,7 +132,8 @@ $(document).ready(function() {
     $("#game-section").show();
 
     //Render question group
-    var currentQuestion = 0;
+    currentQuestion = 0;
+
     renderQuestion(currentQuestion);
     renderChoices(currentQuestion);
 
