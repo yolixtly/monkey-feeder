@@ -16,6 +16,7 @@ $(document).ready(function() {
  8. I want to add awesome effects to it! :) 
 */
 
+  var currentQuestion = 0;
 
   /*---------------------------------------------------------------------------------
       Question Object (DataBase) - MODEL 
@@ -143,24 +144,26 @@ $(document).ready(function() {
       $("#game-section").show();
     }); 
     //render question group
-    renderQuestion(questionOnDisplay);
+    renderQuestion(currentQuestion);
+    renderChoices(currentQuestion)
   };
 
   startGame();
 
   // console.log(questionestionOnDisplay.choice);
-  function renderQuestion(questionOnDisplay) {
-    var question = '<h1>' + questionOnDisplay[0].question + '</h1>' ;
+  function renderQuestion(currentQuestion) {
+    var question = '<h1>' + questionOnDisplay[currentQuestion].question + '</h1>' ;
     $("#question").append(question);
   };
 
-  function renderChoices() {
-    var choice = "";
-      $.each(questionOnDisplay, function(index, question) {
-        choice += '<div>' + question.choice + '</div>';
-        $("#list-choices").append(choice);  
-        console.log(question.choices);
-    });
+  function renderChoices(currentQuestion) {
+    var showChoices = "<form id='answerSelect'>";
+      $.each(questionOnDisplay[currentQuestion].choices, function(index, choice) {
+        showChoices += '<div><input type="radio" name="answer" value=' + index +'">' + choice + '</div>'; 
+        console.log(choice);
+      });
+      showChoices += "</form>"
+    $("#list-choices").append(showChoices); 
   };
 });
 
