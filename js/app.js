@@ -143,21 +143,24 @@ $(document).ready(function() {
       $("#game-section").show();
     }); 
     //render question group
-    renderGame();
+    renderQuestion(questionOnDisplay);
   };
 
   startGame();
 
-  function renderGame() {
-    var question = '<h1>' + questionOnDisplay[2].question + '</h1>' ;
+  // console.log(questionestionOnDisplay.choice);
+  function renderQuestion(questionOnDisplay) {
+    var question = '<h1>' + questionOnDisplay[0].question + '</h1>' ;
     $("#question").append(question);
+  };
+
+  function renderChoices() {
     var choice = "";
-    var questionChoices = questionOnDisplay.choices;
-    console.log(questionChoices);
-  //   for(var i = 0; i < questionOnDisplay.choices.length; i++) {
-  //     choice += '<div>' + questionOnDisplay.choices(i) + '</div>';
-  //   };
-  //   $("#list-choices").append(choice);
+      $.each(questionOnDisplay, function(index, question) {
+        choice += '<div>' + question.choice + '</div>';
+        $("#list-choices").append(choice);  
+        console.log(question.choices);
+    });
   };
 });
 
