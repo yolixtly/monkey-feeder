@@ -124,7 +124,8 @@ $(document).ready(function() {
 
  // Global Variables
   var currentQuestion, 
-  userScore;
+  userScore,
+  userAnswers;
 
   function startGame() {
     //Render Game Section
@@ -133,7 +134,7 @@ $(document).ready(function() {
 
     //Render question group
     currentQuestion = 0;
-
+    userAnswers = [];
     renderQuestion(currentQuestion);
     renderChoices(currentQuestion);
 
@@ -176,6 +177,8 @@ $(document).ready(function() {
   function renderQuestion(currentQuestion) {
     var question = '<h1>' + questionOnDisplay[currentQuestion].question + '</h1>' ;
     $("#question").append(question);
+    console.log(question);
+    console.log(currentQuestion);
   };
 
   //Function to Show Choices given the Current Question 
@@ -183,22 +186,26 @@ $(document).ready(function() {
     var showChoices = "<form id='answerSelect'>";
       $.each(questionOnDisplay[currentQuestion].choices, function(index, choice) {
         if(questionOnDisplay[currentQuestion].correctAnswer.length !== 1) {
-          showChoices += '<div><input type="checkbox" id="answer-'+ index +'" name="answer" value=' + index +'"><label class="answer" for="answer-'+ index +'">' + choice + '</label></div>'; 
+          showChoices += '<div><input class="answer answer-checkbox" type="checkbox" id="answer-'+ index +'" name="answer" value=' + index +'"><label class="answer" for="answer-'+ index +'">' + choice + '</label></div>'; 
           console.log(choice);
         } else {
-          showChoices += '<div><input type="radio" id="answer-'+ index +'" name="answer" value=' + index +'"><label class="answer" for="answer-'+ index +'">' + choice + '</label></div>'; 
+          showChoices += '<div><input class="answer answer-radio" type="radio" id="answer-'+ index +'" name="answer" value=' + index +'"><label class="answer" for="answer-'+ index +'">' + choice + '</label></div>'; 
           console.log(choice);   
         }
 
       });
       showChoices += "</form>"
     $("#list-choices").append(showChoices); 
+    console.log(currentQuestion);
   };
   
   //Function to Render next-question 
   function nextQuestion(currentQuestion){
     $("#next-question").click(function(){
       cleanQuestion();
+      console.log(currentQuestion);
+      console.log(questionOnDisplay.length);
+      // getUserAnswers();
       if(currentQuestion < questionOnDisplay.length - 1) {
           currentQuestion++;
           renderQuestion(currentQuestion);
@@ -209,5 +216,20 @@ $(document).ready(function() {
       }
     }); 
   };
+
+  function getUserAnswers () {
+    var selectedChoices = $('.answer:checked').val();
+    for(var i = 0; selectedChoices[i]; i++) {
+      userAnswers.push(selectedChoices);
+    };
+    return userAnswers;
+  };
+
+  // function getUserAnswers () {
+  //     var userAnswers = $(".answer:checked").val();
+  //     console.log(userAnswers);
+  // };
+
+
 });
 
