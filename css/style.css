@@ -144,6 +144,11 @@ height: 2rem;
   cursor: pointer;
 }
 
+#progress {
+  width: 90%;
+    margin: 0 auto;
+    height: 5rem;
+}
 /* -------------
 Screen Sizes Custom styles
 -------------- */

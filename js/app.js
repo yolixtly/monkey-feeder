@@ -231,13 +231,6 @@ $(document).ready(function() {
     return selectedChoices;
   };
 
-   //Function to Sum all good/ rest all bad answers 
-   function addUpScore(questionOnDisplay){
-    return userScore.reduce(function(previousValue, currentValue, currentIndex, array){
-      return previousValue + currentValue;
-    });
-   };
-
    //Function to evaluate selectedChoices vs Correct Choice
     function answerEvaluation(currentQuestion){
      if(selectedChoices === questionOnDisplay[currentQuestion].correctAnswer) {
@@ -248,5 +241,16 @@ $(document).ready(function() {
      return userScore;
    };
 
+   //Function to Sum all good/ rest all bad answers 
+   function addUpScore(questionOnDisplay){
+    return userScore.reduce(function(previousValue, currentValue, currentIndex, array){
+      return previousValue + currentValue;
+    });
+   };
+
+   //Function to render Progress
+   function progressBar(){
+    
+   }
 });
 
