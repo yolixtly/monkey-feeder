@@ -135,6 +135,14 @@ background: #68B890;
   transition: all 0.5s ease-in-out;
 }
 
+.answer-checkbox, .answer-radio {
+width: 2rem;
+height: 2rem;
+}
+
+.answer {
+  cursor: pointer;
+}
 
 /* -------------
 Screen Sizes Custom styles

@@ -6,11 +6,11 @@ $(document).ready(function() {
  1. An Array of Questions: questions, answers, correct answer(s). DONE
  2. A function to loop through each question and separetly displays it (next question button); DONE
     - one is the brains (Model) the other is the View (UI)
- 3. A  function to start a New Game from 0 (with a monkey button); IN PROGRESS
- 4. A  Function to Re-start the game from 0; INPROGRESS
- 5. A  function to evaluate if the answer is correct or not.
- 6. A  function to count the score (add or rest)
-      - it adds or rest the count (Model)
+ 3. A  function to start a New Game from 0 (with a monkey button); DONE
+ 4. A  Function to Re-start the game from 0; DONE
+ 5. A  function to evaluate if the answer is correct or not. DONE
+ 6. A  function to count the score (add or rest) DONE
+      - it adds or rest the count (Model) INPROGRESS
       - it displays the progress in a progress bar (View) 
  7. A function to Show the Results 
  8. I want to add awesome effects to it! :) 
@@ -110,7 +110,7 @@ $(document).ready(function() {
 
 
    /*---------------------------------------------------------------------------------
-     Event Handlers - VIEW
+     Event Listener/ handler- VIEW
   ---------------------------------------------------------------------------------*/
 
   //Loading the App : 
@@ -125,7 +125,7 @@ $(document).ready(function() {
  // Global Variables
   var currentQuestion, 
   userScore,
-  userAnswers;
+  selectedChoices;
 
   function startGame() {
     //Render Game Section
@@ -134,7 +134,8 @@ $(document).ready(function() {
 
     //Render question group
     currentQuestion = 0;
-    userAnswers = [];
+    selectedChoices = [];
+    userScore = [];
     renderQuestion(currentQuestion);
     renderChoices(currentQuestion);
 
@@ -159,11 +160,12 @@ $(document).ready(function() {
   //Function for Right reStart button 
   function restart() {
     $("#new").click(function() {
+      //Reset the Values of HTML 
       cleanQuestion();
       currentQuestion = 0;
+      //Event listeners: returning to init Page
       $("#game-section").hide();
       $("#init-page").show();
-      //Reset the Values of HTML 
    });
   };
 
@@ -171,14 +173,14 @@ $(document).ready(function() {
   function cleanQuestion(){
       $("#question").html('');
       $("#list-choices").html('');
-      console.clear();
+      // console.clear();
   };
   //Function to Show the Question given the Current Question 
   function renderQuestion(currentQuestion) {
     var question = '<h1>' + questionOnDisplay[currentQuestion].question + '</h1>' ;
     $("#question").append(question);
-    console.log(question);
-    console.log(currentQuestion);
+    // console.log(question);
+    // console.log(currentQuestion);
   };
 
   //Function to Show Choices given the Current Question 
@@ -187,49 +189,64 @@ $(document).ready(function() {
       $.each(questionOnDisplay[currentQuestion].choices, function(index, choice) {
         if(questionOnDisplay[currentQuestion].correctAnswer.length !== 1) {
           showChoices += '<div><input class="answer answer-checkbox" type="checkbox" id="answer-'+ index +'" name="answer" value=' + index +'"><label class="answer" for="answer-'+ index +'">' + choice + '</label></div>'; 
-          console.log(choice);
+          // console.log(choice);
         } else {
           showChoices += '<div><input class="answer answer-radio" type="radio" id="answer-'+ index +'" name="answer" value=' + index +'"><label class="answer" for="answer-'+ index +'">' + choice + '</label></div>'; 
-          console.log(choice);   
+          // console.log(choice);   
         }
 
       });
       showChoices += "</form>"
     $("#list-choices").append(showChoices); 
-    console.log(currentQuestion);
+    // console.log(currentQuestion);
   };
   
   //Function to Render next-question 
   function nextQuestion(currentQuestion){
     $("#next-question").click(function(){
-      cleanQuestion();
-      console.log(currentQuestion);
-      console.log(questionOnDisplay.length);
-      // getUserAnswers();
+       getUserAnswers();
+       console.log(selectedChoices);
+       console.log(questionOnDisplay[currentQuestion].correctAnswer);
+       answerEvaluation(currentQuestion);
+       console.log("the current Score is: " + userScore);
+       // console.log(answerEvaluation);
       if(currentQuestion < questionOnDisplay.length - 1) {
+          cleanQuestion();
           currentQuestion++;
           renderQuestion(currentQuestion);
           renderChoices(currentQuestion);
-          console.log("the current question is:" + currentQuestion);
+          console.log("the current question is: " + currentQuestion);
       } else {
+        cleanQuestion();
         alert("end of game");
       }
     }); 
   };
 
+  //Function to grab the User choices. it returns an Array
   function getUserAnswers () {
-    var selectedChoices = $('.answer:checked').val();
-    for(var i = 0; selectedChoices[i]; i++) {
-      userAnswers.push(selectedChoices);
-    };
-    return userAnswers;
+   selectedChoices = $('.answer:checked').map(function(index, checkboxOrRadio){
+      return parseInt($(checkboxOrRadio).val());
+   }).get();
+    return selectedChoices;
   };
 
-  // function getUserAnswers () {
-  //     var userAnswers = $(".answer:checked").val();
-  //     console.log(userAnswers);
-  // };
+   //Function to Sum all good/ rest all bad answers 
+   function addUpScore(questionOnDisplay){
+    return userScore.reduce(function(previousValue, currentValue, currentIndex, array){
+      return previousValue + currentValue;
+    });
+   };
 
+   //Function to evaluate selectedChoices vs Correct Choice
+    function answerEvaluation(currentQuestion){
+     if(selectedChoices === questionOnDisplay[currentQuestion].correctAnswer) {
+        userScore.push(1);
+     } else if(selectedChoices !== questionOnDisplay[currentQuestion].correctAnswer) {
+        userScore.push(-1);
+     };
+     return userScore;
+   };
 
 });
 
