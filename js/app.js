@@ -208,6 +208,7 @@ $(document).ready(function() {
        console.log(selectedChoices);
        console.log(questionOnDisplay[currentQuestion].correctAnswer);
        answerEvaluation(currentQuestion);
+       addUpScore(questionOnDisplay);
        console.log("the current Score is: " + userScore);
        // console.log(answerEvaluation);
       if(currentQuestion < questionOnDisplay.length - 1) {
@@ -232,13 +233,25 @@ $(document).ready(function() {
   };
 
    //Function to evaluate selectedChoices vs Correct Choice
-    function answerEvaluation(currentQuestion){
+/*    function answerEvaluation(currentQuestion){
      if(selectedChoices === questionOnDisplay[currentQuestion].correctAnswer) {
         userScore.push(1);
      } else if(selectedChoices !== questionOnDisplay[currentQuestion].correctAnswer) {
         userScore.push(-1);
      };
      return userScore;
+   };*/
+
+   function answerEvaluation(currentQuestion){
+    if(compareArrays(selectedChoices, questionOnDisplay[currentQuestion].correctAnswer)) {
+      userScore.push(1);
+    } else {
+      userScore.push(-1);
+    }
+   };
+   //this compares the arrays by turning them into strings. is there a better way????!! 
+   function compareArrays(a, b) {
+    return JSON.stringify(a) === JSON.stringify(b);
    };
 
    //Function to Sum all good/ rest all bad answers 
