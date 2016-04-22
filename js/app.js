@@ -208,7 +208,7 @@ $(document).ready(function() {
        console.log(selectedChoices);
        console.log(questionOnDisplay[currentQuestion].correctAnswer);
        answerEvaluation(currentQuestion);
-       addUpScore(questionOnDisplay);
+       addUpScore();
        console.log("the current Score is: " + userScore);
        // console.log(answerEvaluation);
       if(currentQuestion < questionOnDisplay.length - 1) {
@@ -255,7 +255,7 @@ $(document).ready(function() {
    };
 
    //Function to Sum all good/ rest all bad answers 
-   function addUpScore(questionOnDisplay){
+   function addUpScore(){
     return userScore.reduce(function(previousValue, currentValue, currentIndex, array){
       return previousValue + currentValue;
     });
