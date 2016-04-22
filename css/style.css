@@ -1,6 +1,7 @@
 body {
     background: #FF9800;
     letter-spacing: .5px;
+    margin-bottom: 60px;
 }
 header {
   background: #68B890;
@@ -101,7 +102,7 @@ Game Section
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid;
+  /*border: 1px solid;*/
   font-family: lato;
   margin: 0 auto;
 }
@@ -146,8 +147,17 @@ height: 2rem;
 
 #progress {
   width: 90%;
-  margin: 0 auto;
+  margin: 30px auto 10px auto;
   height: 5rem;
+}
+.message {
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+    font-size: 3rem;
+    padding: 4rem 0 4rem 0;
+    font-family: 'Chewy', cursive;
+    color: #00405d;
 }
 /* -------------
 Screen Sizes Custom styles

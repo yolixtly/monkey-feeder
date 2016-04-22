@@ -36,75 +36,48 @@ $(document).ready(function() {
       [0,2,4]
     );
     questionOnDisplay[1] = new Question (
-      // question
       "How do you say “I’m hungover” in spanish?",
-      //the choices
       ["Estoy crudo!","Estoy bien, gracias!"],
-      // the correct answer
       [0]
     );
     questionOnDisplay[2] = new Question (
-      // question
       "Select the option that translates to Spanish and in the same order the following list: “1. Blue, 2. Red, 3. Yellow”:",
-      //the choices
-      ["1. Azul, 2.  Rojo, 3. Amarillo", "1. Morado, 2. Blanco, 3. Gris", "1.Verde, 2. Rojo, 3. Rosa", "1. Negro, 2. Amarillo, 3. Verde"],
-      // the correct answer
-      [2]
+      ["1. Morado, 2. Blanco, 3. Gris", "1.Verde, 2. Rojo, 3. Rosa", "1. Negro, 2. Amarillo, 3. Verde", "1. Azul, 2.  Rojo, 3. Amarillo"],
+      [3]
     );
     questionOnDisplay[3] = new Question (
-      // question
       "Is “mono” a way to say “monkey” in Spanish?",
-      //the choices
       ["yes", "no"],
-      // the correct answer
       [0]
     );     
     questionOnDisplay[4] = new Question (
-      // question
       "How do you ask: “where is the toilet?” in spanish?",
-      //the choices
-      ["¿Dónde está la cocina?", "¿Dónde está el teléfono?","¿Dónde está el baño?"],
-      // the correct answer
-      [3]
+      ["¿Dónde está la cocina?", "¿Dónde está el baño?", "¿Dónde está el teléfono?"],
+      [1]
     );         
     questionOnDisplay[5] = new Question (
-      // question
       "Select the 2 correct ways to say “I love you” in Spanish:",
-      //the choices
       ["te aprecio", "te amo", "te quiero","me gustas"],
-      // the correct answer
       [1, 2]
     );
      questionOnDisplay[6] = new Question (
-      // question
       "Is “Lunes” a:",
-      //the choices
       ["Day of the week", "Mexican Actor", "Moon in spanish"],
-      // the correct answer
       [0]
     );  
      questionOnDisplay[7] = new Question (
-      // question
       "Dog is to “perro” as cat is to “gato”:",
-      //the choices
       ["yes", "no"],
-      // the correct answer
       [0]
     );   
      questionOnDisplay[8] = new Question (
-      // question
       "Select the numerical option that translates: “uno, diez, cinco”:",
-      //the choices
       ["2, 4, 6","1, 10, 5", "1, 12, 7"],
-      // the correct answer
       [1]
     ); 
      questionOnDisplay[9] = new Question (
-      // question
       "How do you say “I like programming!” in spanish:",
-      //the choices
       ["Me gusta programar!", "Me gusta comer!"],
-      // the correct answer
       [0]
     );      
 
@@ -116,6 +89,7 @@ $(document).ready(function() {
   //Loading the App : 
     
   $("#game-section").hide();
+  $("#statusWrapper").hide();
   $("#logo").click(startGame);
 
   //Instructions and Restart buttons Always available  
@@ -130,14 +104,17 @@ $(document).ready(function() {
   function startGame() {
     //Render Game Section
     $("#init-page").hide();
+    $("#endGame").hide();
+    $("#statusWrapper").show();
     $("#game-section").show();
 
     //Render question group
     currentQuestion = 0;
     selectedChoices = [];
-    userScore = [];
+    userScore = [0];
     renderQuestion(currentQuestion);
     renderChoices(currentQuestion);
+    // progressBar(userScore);
 
     //Render next Question
      nextQuestion(currentQuestion);
@@ -163,8 +140,11 @@ $(document).ready(function() {
       //Reset the Values of HTML 
       cleanQuestion();
       currentQuestion = 0;
+      userScore = [0];
+      $("#status").attr('style', progressBar(userScore));
       //Event listeners: returning to init Page
       $("#game-section").hide();
+      $("#endGame").hide();
       $("#init-page").show();
    });
   };
@@ -205,21 +185,23 @@ $(document).ready(function() {
   function nextQuestion(currentQuestion){
     $("#next-question").click(function(){
        getUserAnswers();
-       console.log(selectedChoices);
-       console.log(questionOnDisplay[currentQuestion].correctAnswer);
+       console.log("the user choices are : " + selectedChoices);
+       console.log("The correct answer is: "+ questionOnDisplay[currentQuestion].correctAnswer);
        answerEvaluation(currentQuestion);
-       addUpScore();
        console.log("the current Score is: " + userScore);
-       // console.log(answerEvaluation);
+      $("#status").attr('style', progressBar(userScore));
       if(currentQuestion < questionOnDisplay.length - 1) {
           cleanQuestion();
           currentQuestion++;
           renderQuestion(currentQuestion);
           renderChoices(currentQuestion);
           console.log("the current question is: " + currentQuestion);
+          if(userScore === 5){
+            endGame(userScore);
+          };
       } else {
         cleanQuestion();
-        alert("end of game");
+        endGame(userScore);
       }
     }); 
   };
@@ -229,41 +211,46 @@ $(document).ready(function() {
    selectedChoices = $('.answer:checked').map(function(index, checkboxOrRadio){
       return parseInt($(checkboxOrRadio).val());
    }).get();
+   console.log(selectedChoices);
     return selectedChoices;
   };
 
    //Function to evaluate selectedChoices vs Correct Choice
-/*    function answerEvaluation(currentQuestion){
-     if(selectedChoices === questionOnDisplay[currentQuestion].correctAnswer) {
-        userScore.push(1);
-     } else if(selectedChoices !== questionOnDisplay[currentQuestion].correctAnswer) {
-        userScore.push(-1);
-     };
-     return userScore;
-   };*/
-
    function answerEvaluation(currentQuestion){
     if(compareArrays(selectedChoices, questionOnDisplay[currentQuestion].correctAnswer)) {
-      userScore.push(1);
+      userScore++;
     } else {
-      userScore.push(-1);
+      if (userScore > 0) {
+        userScore--;
+      }
     }
+    return userScore;
    };
-   //this compares the arrays by turning them into strings. is there a better way????!! 
+   //This compares the arrays by turning them into strings. is there a better way????!! 
    function compareArrays(a, b) {
     return JSON.stringify(a) === JSON.stringify(b);
    };
 
-   //Function to Sum all good/ rest all bad answers 
-   function addUpScore(){
-    return userScore.reduce(function(previousValue, currentValue, currentIndex, array){
-      return previousValue + currentValue;
-    });
+   // Function to render Progress
+   function progressBar(userScore){
+    var showScore = 'width: ';
+    showScore += (userScore * 100)/ 5;
+    showScore += "%"; 
+    return showScore;
    };
 
-   //Function to render Progress
-   function progressBar(){
-    
-   }
+   //function to End game! 
+   function endGame(userScore){
+      $("#statusWrapper").hide();
+      $("#game-section").hide();
+      $("#endGame").show();
+     if(userScore === 5) {
+      var endMessage = '<div class="message">Congratulations! The Monkey Survived and now he is a happy Monkey!</div>';
+      $("#endGame").append(endMessage);
+     } else {
+      endMessage = '<div class="message">Ups! Monkey is hungry and angry!</div>';
+      $("#endGame").append(endMessage);
+     }
+   };
 });
 
