@@ -95,11 +95,11 @@ $(document).ready(function() {
     //Render question group
     currentQuestion = 0;
     selectedChoices = [];
-    userScore = [0];
+    userScore = 0;
     renderQuestion(currentQuestion);
     renderChoices(currentQuestion);
     //Render next Question
-     nextQuestion(currentQuestion);
+     // nextQuestion(currentQuestion);
 
   };
    /*---------------------------------------------------------------------------------
@@ -121,8 +121,9 @@ $(document).ready(function() {
     $("#new").click(function() {
       //Reset the Values of HTML 
       cleanQuestion();
+      $("#endGame").empty();
       currentQuestion = 0;
-      userScore = [0];
+      userScore = 0;
       $("#status").attr('style', progressBar(userScore));
       startGame();
    });
@@ -154,12 +155,15 @@ $(document).ready(function() {
   };
   
   //Function to Render next-question 
-  function nextQuestion(currentQuestion){
+  // function nextQuestion(currentQuestion){
     $("#next-question").click(function(){
        getUserAnswers();
        console.log("the user choices are : " + selectedChoices);
        console.log("The correct answer is: "+ questionOnDisplay[currentQuestion].correctAnswer);
        answerEvaluation(currentQuestion);
+       if(userScore === 5){
+            endGame(userScore);
+       };
        console.log("the current Score is: " + userScore);
       $("#status").attr('style', progressBar(userScore));
       if(currentQuestion < questionOnDisplay.length - 1) {
@@ -168,15 +172,13 @@ $(document).ready(function() {
           renderQuestion(currentQuestion);
           renderChoices(currentQuestion);
           console.log("the current question is: " + currentQuestion);
-          if(userScore === 5){
-            endGame(userScore);
-          };
+
       } else {
         cleanQuestion();
         endGame(userScore);
       }
     }); 
-  };
+  // };
 
   //Function to grab the User choices. it returns an Array
   function getUserAnswers () {
