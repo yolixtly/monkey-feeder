@@ -1,22 +1,6 @@
 "use strict"; 
 $(document).ready(function() {
   
-
-/*-----What do I need ? 
- 1. An Array of Questions: questions, answers, correct answer(s). DONE
- 2. A function to loop through each question and separetly displays it (next question button); DONE
-    - one is the brains (Model) the other is the View (UI)
- 3. A  function to start a New Game from 0 (with a monkey button); DONE
- 4. A  Function to Re-start the game from 0; DONE
- 5. A  function to evaluate if the answer is correct or not. DONE
- 6. A  function to count the score (add or rest) DONE
-      - it adds or rest the count (Model) INPROGRESS
-      - it displays the progress in a progress bar (View) 
- 7. A function to Show the Results 
- 8. I want to add awesome effects to it! :) 
-*/
-
-
   /*---------------------------------------------------------------------------------
       Question Object (DataBase) - MODEL 
   ---------------------------------------------------------------------------------*/
@@ -83,7 +67,7 @@ $(document).ready(function() {
 
 
    /*---------------------------------------------------------------------------------
-     Event Listener/ handler- VIEW
+     Event Listeners/ handlers
   ---------------------------------------------------------------------------------*/
 
   //Loading the App : 
@@ -97,9 +81,9 @@ $(document).ready(function() {
   restart();
 
  // Global Variables
-  var currentQuestion, 
-  userScore,
-  selectedChoices;
+  var currentQuestion;
+  var userScore;
+  var selectedChoices;
 
   function startGame() {
     //Render Game Section
@@ -114,8 +98,6 @@ $(document).ready(function() {
     userScore = [0];
     renderQuestion(currentQuestion);
     renderChoices(currentQuestion);
-    // progressBar(userScore);
-
     //Render next Question
      nextQuestion(currentQuestion);
 
@@ -142,10 +124,7 @@ $(document).ready(function() {
       currentQuestion = 0;
       userScore = [0];
       $("#status").attr('style', progressBar(userScore));
-      //Event listeners: returning to init Page
-      $("#game-section").hide();
-      $("#endGame").hide();
-      $("#init-page").show();
+      startGame();
    });
   };
 
@@ -153,14 +132,11 @@ $(document).ready(function() {
   function cleanQuestion(){
       $("#question").html('');
       $("#list-choices").html('');
-      // console.clear();
   };
   //Function to Show the Question given the Current Question 
   function renderQuestion(currentQuestion) {
     var question = '<h1>' + questionOnDisplay[currentQuestion].question + '</h1>' ;
     $("#question").append(question);
-    // console.log(question);
-    // console.log(currentQuestion);
   };
 
   //Function to Show Choices given the Current Question 
@@ -169,16 +145,12 @@ $(document).ready(function() {
       $.each(questionOnDisplay[currentQuestion].choices, function(index, choice) {
         if(questionOnDisplay[currentQuestion].correctAnswer.length !== 1) {
           showChoices += '<div><input class="answer answer-checkbox" type="checkbox" id="answer-'+ index +'" name="answer" value=' + index +'"><label class="answer" for="answer-'+ index +'">' + choice + '</label></div>'; 
-          // console.log(choice);
         } else {
           showChoices += '<div><input class="answer answer-radio" type="radio" id="answer-'+ index +'" name="answer" value=' + index +'"><label class="answer" for="answer-'+ index +'">' + choice + '</label></div>'; 
-          // console.log(choice);   
         }
-
       });
       showChoices += "</form>"
     $("#list-choices").append(showChoices); 
-    // console.log(currentQuestion);
   };
   
   //Function to Render next-question 
@@ -209,7 +181,7 @@ $(document).ready(function() {
   //Function to grab the User choices. it returns an Array
   function getUserAnswers () {
    selectedChoices = $('.answer:checked').map(function(index, checkboxOrRadio){
-      return parseInt($(checkboxOrRadio).val());
+    return parseInt($(checkboxOrRadio).val());
    }).get();
    console.log(selectedChoices);
     return selectedChoices;
