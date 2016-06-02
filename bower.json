@@ -1,0 +1,17 @@
+{
+  "name": "monkey-feeder",
+  "description": "\"\"\u001b[DA quiz App \u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[Dfun \u001b[C\u001b[Dquiz app\"",
+  "main": "index.js",
+  "authors": [
+    "yolixtly <yolixtly_13@hotmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/yolixtly/monkey-feeder",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
